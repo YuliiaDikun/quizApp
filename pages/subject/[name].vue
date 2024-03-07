@@ -14,7 +14,6 @@ interface ISubject {
 
 const route = useRoute();
 
-
 const count = ref(0);
 const buttonText= ref('next');
 const score = ref(0);
