@@ -8,7 +8,7 @@
       <div class=" flex flex-col min-h-screen">
         <header class="h-[50px] py-5 border-b border-blue-950 dark:border-gray-300 flex items-center justify-between">
          <nav class="max-w-7xl mx-auto px-5 md:px-10 w-full">
-           <h1 class="uppercase font-bold text-2xl ml-0">Eng</h1>
+           <NuxtLink to="/" class="uppercase font-bold text-2xl ml-0">Eng</NuxtLink>
          </nav>
 
         </header>

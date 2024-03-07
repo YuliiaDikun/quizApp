@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import subjectMap from "~/utils/subjectMap";
 interface IQuestion  {
   title: string
   correct_answer: number
@@ -11,36 +11,19 @@ interface ISubject {
   correctAnswers: number
   questions: IQuestion[]
 }
+
+const route = useRoute();
+
+
 const count = ref(0);
 const buttonText= ref('next');
 const score = ref(0);
 const showNextQuestion = ref(true)
 
 const subject:Ref<ISubject>  = ref({
-  title: 'subject title',
+  title: '',
   correctAnswers: 0,
-  questions: [
-    {
-      title: 'what is css',
-      correct_answer: 0,
-      selected_answer: null,
-      answers: [
-        "web page styling",
-        'a car part',
-        'sweet cake'
-      ]
-    },
-    {
-      title: 'what is html',
-      correct_answer: 2,
-      selected_answer: null,
-      answers: [
-        "town",
-        'a car part',
-        'hyper text markup language'
-      ]
-    }
-  ]
+  questions: []
 })
 
 
@@ -61,7 +44,6 @@ const answerSelected = (index:number) => {
 
 const nextQuestion = () => {
   if(count.value + 1 === subject.value.questions.length) {
-
     showNextQuestion.value = false;
     score.value = 100 * subject.value.correctAnswers / Number(subject.value.questions.length);
 
@@ -70,12 +52,21 @@ const nextQuestion = () => {
     count.value +=1;
   }
 }
+
+onMounted(() => {
+  const subjectTitle = route.params.name;
+  const properSubjectObject = subjectMap.find(subject => subject.title === subjectTitle);
+  if(properSubjectObject) {
+    subject.value.title = properSubjectObject.title;
+    subject.value.questions = [... subject.value.questions, ...properSubjectObject.questions ];
+  }
+})
 </script>
 
 <template>
-  <div class="max-w-7xl mx-auto text-center px-5 py-5">
-    <h1 class="text-2xl text-red-500">Quiz App</h1>
-    <Question v-if="showNextQuestion"
+  <div class="max-w-7xl mx-auto text-center px-5 py-5" v-if="subject.questions.length > 1">
+    <h1 class="text-2xl mb-5 text-gray-200">{{subject.title}}</h1>
+    <Question v-if="subject?.questions?.length > 0 && showNextQuestion"
               @on-answer-selected="answerSelected"
               @on-next-question="nextQuestion"
               :question="subject.questions[count]"
