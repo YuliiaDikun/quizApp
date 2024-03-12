@@ -1,6 +1,7 @@
 <template>
-  <div class="max-w-7xl mx-auto text-center px-5 py-5" >
-    <h1 class="text-2xl mb-5 text-gray-200">{{subject.title}}</h1>
+  <div class="w-full mx-auto text-center py-5" >
+    <BreadCrumles/>
+    <h1 class="text-2xl mb-5 text-gray-200 uppercase">{{subject.title}}</h1>
     <div v-if="subject.questions.length">
       <Question v-if="subject?.questions?.length > 0 && showNextQuestion"
                 @on-answer-selected="answerSelected"
@@ -12,7 +13,7 @@
       />
       <h2 v-else> your score - {{score}}%</h2>
     </div>
-    <h2>The questions will be added soon.</h2>
+    <h2 v-else>The questions will be added soon.</h2>
   </div>
 </template>
 

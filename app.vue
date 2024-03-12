@@ -12,7 +12,7 @@
          </nav>
 
         </header>
-        <main class="max-w-7xl mx-auto px-5 md:px-10 grow shrink-0">
+        <main class="max-w-7xl w-full mx-auto px-5 md:px-10 grow shrink-0">
         <NuxtPage/>
         </main>
         <footer class=" text-center py-5 border-t border-blue-950 dark:border-gray-300 ">

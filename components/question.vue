@@ -1,5 +1,28 @@
 <script setup lang="ts">
-const props = defineProps(['question', 'count', 'qIndex', 'buttonText']);
+interface IQuestion  {
+  title: string
+  correct_answer: number
+  selected_answer: null | number
+  answers: string[]
+}
+defineProps({
+  'question': {
+    type: Object as PropType<IQuestion>,
+    required:true
+  },
+  'count': {
+    type:Number,
+    required:true
+  },
+  'qIndex':{
+    type:Number,
+    required:true
+  },
+  'buttonText':{
+    type: String,
+    required:true
+  }
+});
 const emit = defineEmits(['onAnswerSelected', 'onNextQuestion']);
 
 const onAnswerClick = (index: string | number) => {
