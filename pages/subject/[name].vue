@@ -1,8 +1,7 @@
 <template>
   <div class="w-full mx-auto text-center py-5" >
     <BreadCrumles/>
-    <h1 class="text-2xl mb-5 text-gray-200 uppercase">{{subject.title}}</h1>
-    <div v-if="subject.questions.length">
+    <div class="mt-5" v-if="subject.questions.length">
       <Question v-if="subject?.questions?.length > 0 && showNextQuestion"
                 @on-answer-selected="answerSelected"
                 @on-next-question="nextQuestion"
@@ -11,14 +10,15 @@
                 :count="subject.questions.length"
                 :buttonText="buttonText"
       />
-      <h2 v-else> your score - {{score}}%</h2>
+      <Result v-else :score="score" :correctAnswers="subject.correctAnswers"/>
     </div>
-    <h2 v-else>The questions will be added soon.</h2>
+    <h2 class="mt-5" v-else>The questions will be added soon.</h2>
   </div>
 </template>
 
 <script setup lang="ts">
 import subjectMap from "~/utils/subjectMap";
+import Result from "~/components/result.vue";
 interface IQuestion  {
   title: string
   correct_answer: number
