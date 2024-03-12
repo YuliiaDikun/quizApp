@@ -1,3 +1,21 @@
+<template>
+  <div class="max-w-7xl mx-auto text-center px-5 py-5" >
+    <h1 class="text-2xl mb-5 text-gray-200">{{subject.title}}</h1>
+    <div v-if="subject.questions.length">
+      <Question v-if="subject?.questions?.length > 0 && showNextQuestion"
+                @on-answer-selected="answerSelected"
+                @on-next-question="nextQuestion"
+                :question="subject.questions[count]"
+                :q-index="count + 1"
+                :count="subject.questions.length"
+                :buttonText="buttonText"
+      />
+      <h2 v-else> your score - {{score}}%</h2>
+    </div>
+    <h2>The questions will be added soon.</h2>
+  </div>
+</template>
+
 <script setup lang="ts">
 import subjectMap from "~/utils/subjectMap";
 interface IQuestion  {
@@ -24,7 +42,6 @@ const subject:Ref<ISubject>  = ref({
   correctAnswers: 0,
   questions: []
 })
-
 
 const answerSelected = (index:number) => {
   if( subject.value.questions[count.value].selected_answer !== null) return false;
@@ -62,20 +79,7 @@ onMounted(() => {
 })
 </script>
 
-<template>
-  <div class="max-w-7xl mx-auto text-center px-5 py-5" v-if="subject.questions.length > 1">
-    <h1 class="text-2xl mb-5 text-gray-200">{{subject.title}}</h1>
-    <Question v-if="subject?.questions?.length > 0 && showNextQuestion"
-              @on-answer-selected="answerSelected"
-              @on-next-question="nextQuestion"
-              :question="subject.questions[count]"
-              :q-index="count + 1"
-              :count="subject.questions.length"
-              :buttonText="buttonText"
-    />
-    <h2 v-else> your score - {{score}}%</h2>
-  </div>
-</template>
+
 
 <style scoped>
 
