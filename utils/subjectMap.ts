@@ -449,7 +449,118 @@ const subjectMap = [
     },
     {
         title: 'gerund',
-        questions: []
+        questions: [
+            {
+                title: 'She enjoys _____ (to read) books in her free time.',
+                correct_answer: 0,
+                selected_answer: null,
+                answers: [
+                    "reading",
+                    "to read",
+                    "reads",
+                    "read",
+                ]
+            },
+            {
+                title: 'I avoid _____ (to eat) junk food for better health.',
+                correct_answer: 1,
+                selected_answer: null,
+                answers: [
+                    "eating",
+                    "to eat",
+                    "eats",
+                    "ate",
+                ]
+            },
+            {
+                title: 'We considered _____ (to go) to the beach this weekend.',
+                correct_answer: 3,
+                selected_answer: null,
+                answers: [
+                    "go",
+                    "going",
+                    "to go",
+                    "going",
+                ]
+            },
+            {
+                title: 'He suggested _____ (to watch) a movie after dinner.',
+                correct_answer: 2,
+                selected_answer: null,
+                answers: [
+                    "watch",
+                    "watching",
+                    "to watch",
+                    "watched",
+                ]
+            },
+            {
+                title: 'They regret _____ (to cancel) their vacation plans.',
+                correct_answer: 0,
+                selected_answer: null,
+                answers: [
+                    "cancelling",
+                    "to cancel",
+                    "cancel",
+                    "cancelled",
+                ]
+            },
+            {
+                title: 'She admitted _____ (to make) a mistake.',
+                correct_answer: 3,
+                selected_answer: null,
+                answers: [
+                    "make",
+                    "to make",
+                    "making",
+                    "having made",
+                ]
+            },
+            {
+                title: 'He delayed _____ (to start) his project until next week.',
+                correct_answer: 2,
+                selected_answer: null,
+                answers: [
+                    "start",
+                    "to start",
+                    "starting",
+                    "starts",
+                ]
+            },
+            {
+                title: 'We finished _____ (to complete) the assignment early.',
+                correct_answer: 1,
+                selected_answer: null,
+                answers: [
+                    "complete",
+                    "completing",
+                    "to complete",
+                    "completed",
+                ]
+            },
+            {
+                title: 'She doesn’t mind _____ (to wait) for a few minutes.',
+                correct_answer: 0,
+                selected_answer: null,
+                answers: [
+                    "waiting",
+                    "to wait",
+                    "waits",
+                    "waited",
+                ]
+            },
+            {
+                title: 'They discussed _____ (to visit) Paris next summer.',
+                correct_answer: 2,
+                selected_answer: null,
+                answers: [
+                    "visit",
+                    "to visit",
+                    "visiting",
+                    "visited",
+                ]
+            }
+        ]
     },
 ]
 
