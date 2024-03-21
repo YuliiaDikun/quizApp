@@ -40,8 +40,8 @@ defineEmits<{
       v-for="(answer, index) in question.answers"
       :key="`answer-${index}`"
       @click="$emit('onAnswerSelected', Number(index))"
-      :class="{'bg-green-400 text-white' : question.selected_answer !== null && index === question.correct_answer},
-       {'bg-red-400 text-white' : question.selected_answer !== question.correct_answer && index === question.selected_answer},
+      :class="{'!bg-green-400 !text-white' : question.selected_answer !== null && index === question.correct_answer},
+       {'!bg-red-400 !text-white' : question.selected_answer !== question.correct_answer && index === question.selected_answer},
        {'bg-white dark:bg-blue-950 ' : question.selected_answer === null}
         "
       class="cursor-pointer px-2 py-1 hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors rounded mb-3 w-full">

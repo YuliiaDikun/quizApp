@@ -38,31 +38,31 @@ const buttonText = ref('next');
 const score = ref(0);
 const showNextQuestion = ref(true)
 
-const subject: ISubject = reactive({
+const subject:Ref<ISubject>  = ref({
   title: '',
   correctAnswers: 0,
   questions: []
 })
 
 const answerSelected = (index: number) => {
-  if (subject.questions[count.value].selected_answer !== null) return false;
-  if (count.value + 1 === subject.questions.length) {
+  if (subject.value.questions[count.value].selected_answer !== null) return false;
+  if (count.value + 1 === subject.value.questions.length) {
     buttonText.value = 'show results'
   }
-  subject.questions[count.value] = {
-    ...subject.questions[count.value],
+  subject.value.questions[count.value] = {
+    ...subject.value.questions[count.value],
     selected_answer: index
   };
 
-  if (index === subject.questions[count.value].correct_answer) {
-    subject.correctAnswers += 1
+  if (index === subject.value.questions[count.value].correct_answer) {
+    subject.value.correctAnswers += 1
   }
 }
 
 const nextQuestion = () => {
-  if (count.value + 1 === subject.questions.length) {
+  if (count.value + 1 === subject.value.questions.length) {
     showNextQuestion.value = false;
-    score.value = 100 * subject.correctAnswers / subject.questions.length;
+    score.value = 100 * subject.value.correctAnswers / subject.value.questions.length;
 
     return;
   } else {
@@ -75,8 +75,8 @@ onMounted(() => {
   const properSubjectObject = subjectMap.find(subject => subject.title === subjectTitle);
   if (properSubjectObject) {
     const { title, questions } = properSubjectObject;
-    subject.title = title;
-    subject.questions = questions as IQuestion[]; // Direct assignment after destructuring
+    subject.value.title = title;
+    subject.value.questions = questions as IQuestion[];
   }
 })
 </script>
