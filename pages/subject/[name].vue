@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import subjectMap from "~/utils/subjectMap";
 import Result from "~/components/result.vue";
-interface IQuestion  {
+interface IQuestion {
   title: string
   correct_answer: number
   selected_answer: null | number
@@ -34,48 +34,49 @@ interface ISubject {
 const route = useRoute();
 
 const count = ref(0);
-const buttonText= ref('next');
+const buttonText = ref('next');
 const score = ref(0);
 const showNextQuestion = ref(true)
 
-const subject:Ref<ISubject>  = ref({
+const subject: ISubject = reactive({
   title: '',
   correctAnswers: 0,
   questions: []
 })
 
-const answerSelected = (index:number) => {
-  if( subject.value.questions[count.value].selected_answer !== null) return false;
-  if(count.value + 1 === subject.value.questions.length) {
+const answerSelected = (index: number) => {
+  if (subject.questions[count.value].selected_answer !== null) return false;
+  if (count.value + 1 === subject.questions.length) {
     buttonText.value = 'show results'
   }
-  subject.value.questions[count.value] = {
-    ...subject.value.questions[count.value],
+  subject.questions[count.value] = {
+    ...subject.questions[count.value],
     selected_answer: index
   };
 
-  if (index === subject.value.questions[count.value].correct_answer) {
-    subject.value.correctAnswers +=1
+  if (index === subject.questions[count.value].correct_answer) {
+    subject.correctAnswers += 1
   }
 }
 
 const nextQuestion = () => {
-  if(count.value + 1 === subject.value.questions.length) {
+  if (count.value + 1 === subject.questions.length) {
     showNextQuestion.value = false;
-    score.value = 100 * subject.value.correctAnswers / Number(subject.value.questions.length);
+    score.value = 100 * subject.correctAnswers / subject.questions.length;
 
     return;
   } else {
-    count.value +=1;
+    count.value += 1;
   }
 }
 
 onMounted(() => {
   const subjectTitle = route.params.name;
   const properSubjectObject = subjectMap.find(subject => subject.title === subjectTitle);
-  if(properSubjectObject) {
-    subject.value.title = properSubjectObject.title;
-    subject.value.questions = [... subject.value.questions, ...properSubjectObject.questions ];
+  if (properSubjectObject) {
+    const { title, questions } = properSubjectObject;
+    subject.title = title;
+    subject.questions = questions as IQuestion[]; // Direct assignment after destructuring
   }
 })
 </script>
