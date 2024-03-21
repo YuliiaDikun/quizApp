@@ -5,24 +5,12 @@ interface IQuestion  {
   selected_answer: null | number
   answers: string[]
 }
-defineProps({
-  'question': {
-    type: Object as PropType<IQuestion>,
-    required:true
-  },
-  'count': {
-    type:Number,
-    required:true
-  },
-  'qIndex':{
-    type:Number,
-    required:true
-  },
-  'buttonText':{
-    type: String,
-    required:true
-  }
-});
+defineProps<{
+  question: IQuestion,
+  count:number,
+  qIndex: number,
+  buttonText: string,
+}>();
 
 defineEmits<{
   (e: "onAnswerSelected", payload:number): void;
