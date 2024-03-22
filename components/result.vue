@@ -13,10 +13,13 @@
 <script setup lang="ts">
 import Penguine from '~/assets/icons/penguin-svgrepo-com.svg';
 import resultFinalMessage from "~/utils/constants";
-defineProps<{
+
+interface Props {
   score: number,
   correctAnswers:number
-}>()
+}
+
+defineProps<Props>()
 
 </script>
 
